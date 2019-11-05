@@ -1,12 +1,33 @@
 var timeEl = document.querySelector(".time");
-var mainEl = document.getElementById("main");
+var questBox = document.querySelector("#question-box");
+var question = document.querySelector("#question");
+var answer = document.querySelector("#answers");
+var results = document.querySelector("#results-box");
+var scoreTitle = document.querySelector("#scoretitle");
+var scores = document.querySelector("#scores");
+var startbtn = document.querySelector("#startbtn");
 
-var secondsLeft = 10;
 
+startbtn.addEventListener("click", function(){
+    setTime()
+
+});
+
+
+
+
+
+
+
+
+
+
+
+var secondsLeft = 76;
 function setTime() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left.";
+    timeEl.textContent = "Time: " + secondsLeft ;
 
     if(secondsLeft === 0) {
       clearInterval(timerInterval);
