@@ -13,29 +13,37 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <!-- Header -->
+    <div class="container">
         <div class="head">
-            <h5 id="highscore"> View Highscores</h5>
+            <h5 id="scorebtn"> View Highscores</h5>
             <h5 class="time">Time: 0 </h5>
         </div>
 
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Javascript Quiz</h5>
-                <p class="card-text">Click the button to start!</p>
-                <button type="button" id="startbtn" class="btn btn-primary btn-lg">Start Quiz</button>
+        <div id="#frame">
+            <!-- Start box -->
+            <div class="card" id="start-box" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Javascript Quiz</h5>
+                    <p class="card-text">Click the button to start!</p>
+                    <button type="button" id="startbtn" class="btn btn-primary btn-lg">Start Quiz</button>
+                </div>
+            </div>
+
+            <!-- Question box -->
+            <div id="question-box" class="d-flex justify-content-center">
+                <div class="border">
+                    <h1 id="question"> </h1>
+                    <ul id="choices"> </ul>
+                </div>
+            </div>
+
+            <!-- Result box -->
+            <div id="results-box">
+                <h1 id="scoretitle"> </h1>
+                <ul id="scores"> </ul>
             </div>
         </div>
-
-        <div id="question-box">
-            <h1 id="question"> </h1>
-            <ul id="answers"> </ul>
-        </div>
-        <div id="results-box">
-            <h1 id="scoretitle"> </h1>
-            <ul id="scores"> </ul>
-        </div>
-
     </div>
 
 
