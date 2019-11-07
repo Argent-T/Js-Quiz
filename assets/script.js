@@ -10,11 +10,16 @@ var scores = document.querySelector("#scores");
 var startBtn = document.querySelector("#startbtn");
 var scoreBtn = document.querySelector("#scorebtn");
 
+var wrong = document.getElementById("myAudio");
+
+
+
+
 init()
 function init() {
     questBox.style.visibility = "hidden";
     resultsBox.style.display = "none";
-  
+
 }
 
 // START BUTTON/////////////////////////////////
@@ -70,30 +75,33 @@ function renderChoices() {
 
         var button = document.createElement("button");
         button.textContent = "select";
-       
+
         li.appendChild(button);
         choices.appendChild(li)
     }
-    
+
 }
 
 
+// CHOICE SELECT//////////////////////////////////////////////
 questBox.addEventListener("click", function (event) {
     var element = event.target;
 
     // If that element is a button...
     if (element.matches("button") === true) {
-
-        
         // Get its data-index value and remove the todo element from the list
         var index = element.parentElement.getAttribute("data-index");
-        var choice = element.parentElement.innerText    
-        console.log(choice)
-        // todos.splice(index, 1);
+        var choice = $(element.parentElement).clone().children().remove().end().text();
+        if (choice == questions[q].answer) {
+            alert("Correct");
+        }
+        else {
+            secondsLeft = secondsLeft - 10;
+            wrong.play();
+        }
 
-        // Store updated todos in localStorage, re-render the list
-        // storeTodos();
-        // renderTodos();
+        console.log(choice)
+
     }
 });
 
