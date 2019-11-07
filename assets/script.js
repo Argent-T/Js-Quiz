@@ -10,8 +10,8 @@ var scores = document.querySelector("#scores");
 var startBtn = document.querySelector("#startbtn");
 var scoreBtn = document.querySelector("#scorebtn");
 
-var wrong = document.getElementById("myAudio");
-
+var wrongSound = document.getElementById("wrong");
+var correctSound = document.getElementById("correct");
 
 
 
@@ -93,11 +93,12 @@ questBox.addEventListener("click", function (event) {
         var index = element.parentElement.getAttribute("data-index");
         var choice = $(element.parentElement).clone().children().remove().end().text();
         if (choice == questions[q].answer) {
+            correctSound.play();
             alert("Correct");
         }
         else {
             secondsLeft = secondsLeft - 10;
-            wrong.play();
+            wrongSound.play();
         }
 
         console.log(choice)
