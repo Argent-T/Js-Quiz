@@ -20,7 +20,7 @@ resultsBox.style.display = "none";
 startBtn.addEventListener("click", function () {
     setTime()
     startBox.style.display = "none";
-    renderdummyChoices()
+    renderChoices()
 });
 
 
@@ -43,40 +43,13 @@ var questions = [
 // CHOICES BUILDER///////////////////////////
 function renderChoices() {
     choices.innerHTML = "";
-  
-
-    // render new li for each option
-    for (var i = 0; i < questions.choices.length; i++){
-
-    var option = questions.choices[i];
-
-    var li = document.createElement("li");
-    li.textContent = option;
-    li.setAttribute("data-index", i);
-
-    var button = document.createElement("button");
-    button.textContent = "select";
-
-    li.appendChild(button);
-    choices.appendChild(li)
-    }
-
-}
-
-
-
-var dummychoices = ["strings", "booleans", "alerts", "numbers"]
-// testingCHOICES BUILDER///////////////////////////
-
-
-function renderdummyChoices() {
-    choices.innerHTML = "";
     questBox.style.visibility = "visible";
-   
-    // render new li for each option
-    for (var i = 0; i < dummychoices.length; i++){
+    q = 0
 
-    var option = dummychoices[i];
+    // render new li for each option
+    for (var i = 0; i < questions[q].choices.length; i++){
+
+    var option = questions[q].choices[i];
 
     var li = document.createElement("li");
     li.textContent = option;
@@ -90,7 +63,6 @@ function renderdummyChoices() {
     }
 
 }
-
 
 
 
@@ -111,3 +83,21 @@ function setTime() {
 
     }, 1000);
 }
+
+
+
+
+choices.addEventListener("click", function(event) {
+    var element = event.target;
+  
+    // If that element is a button...
+    if (element.matches("button") === true) {
+      // Get its data-index value and remove the todo element from the list
+      var index = element.parentElement.getAttribute("data-index");
+    //   todos.splice(index, 1);
+  
+      // Store updated todos in localStorage, re-render the list
+    //   storeTodos();
+    //   renderTodos();
+    }
+  });
