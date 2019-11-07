@@ -55,6 +55,11 @@ var questions = [
         choices: ["The <head> section", "The <body> section", "Either section"],
         answer: "Either section"
     },
+    {
+        title: "How do you write 'Hello World' in an alert box?",
+        choices: ["msgBox('Hello World')","alertBox('Hello World')", "alert('Hello World')","msg('Hello World')"],
+        answer: "alert('Hello World')"
+    },
 
 ]
 console.log(questions.length)
