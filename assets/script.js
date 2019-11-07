@@ -11,7 +11,10 @@ var startBtn = document.querySelector("#startbtn");
 var scoreBtn = document.querySelector("#scorebtn");
 
 var wrongSound = document.getElementById("wrong");
+wrongSound.volume = 0.3;
 var correctSound = document.getElementById("correct");
+correctSound.volume = 0.5;
+var lowTime = document.getElementById("lowtime");
 
 
 
@@ -42,43 +45,56 @@ var questions = [
         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
         answer: "parentheses"
     },
+    {
+        title: "Inside which HTML element do we put the JavaScript?",
+        choices: ["<script>", "<javascript>", "<scripting>", "<js>"],
+        answer: "<script>"
+    },
+    {
+        title: "Where is the correct place to insert a JavaScript?",
+        choices: ["The <head> section", "The <body> section", "Either section"],
+        answer: "Either section"
+    },
 
 ]
 console.log(questions.length)
 
 
-function storeAnswers() {
-    for (i = 0; i < questions.length; i++) {
-        localStorage.setItem("answers", JSON.stringify(questions.answer[i]));
 
-
-    }
-}
 
 
 var q = -1;
+var stop = 0
 // CHOICES BUILDER///////////////////////////
 function renderChoices() {
-    choices.innerHTML = "";
-    questBox.style.visibility = "visible";
-    q++
-    // render title
-    question.innerHTML = questions[q].title;
-    // render new li for each option
-    for (var i = 0; i < questions[q].choices.length; i++) {
 
-        var option = questions[q].choices[i];
+    if (stop < questions.length) {
 
-        var li = document.createElement("li");
-        li.textContent = option;
-        li.setAttribute("data-index", i);
+        choices.innerHTML = "";
+        questBox.style.visibility = "visible";
+        q++
+        stop++
+        // render title
+        question.innerHTML = questions[q].title;
+        // render new li for each option
+        for (var i = 0; i < questions[q].choices.length; i++) {
 
-        var button = document.createElement("button");
-        button.textContent = "select";
+            var option = questions[q].choices[i];
 
-        li.appendChild(button);
-        choices.appendChild(li)
+            var li = document.createElement("li");
+            li.textContent = option;
+            li.setAttribute("data-index", i);
+
+            var button = document.createElement("button");
+            button.textContent = "select";
+
+            li.appendChild(button);
+            choices.appendChild(li)
+        }
     }
+
+    // else load complete screen
+
 
 }
 
@@ -99,6 +115,7 @@ questBox.addEventListener("click", function (event) {
         else {
             secondsLeft = secondsLeft - 10;
             wrongSound.play();
+            
         }
 
         console.log(choice)
@@ -110,12 +127,15 @@ questBox.addEventListener("click", function (event) {
 
 
 // TIMER////////////////////////////////////////
-var secondsLeft = 75;
+var secondsLeft = (questions.length * 15);
 function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
-
+        if(secondsLeft <= 14){
+            lowTime.play();
+        }
+        
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             sendMessage();
@@ -123,7 +143,6 @@ function setTime() {
 
     }, 1000);
 }
-
 
 
 
