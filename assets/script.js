@@ -94,7 +94,7 @@ questBox.addEventListener("click", function (event) {
         var choice = $(element.parentElement).clone().children().remove().end().text();
         if (choice == questions[q].answer) {
             correctSound.play();
-            alert("Correct");
+            renderChoices()
         }
         else {
             secondsLeft = secondsLeft - 10;
