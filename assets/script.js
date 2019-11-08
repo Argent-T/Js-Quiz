@@ -216,7 +216,7 @@ function renderScores() {
 
 }
 
-
+// Initiation //////////////////////////////
 function init() {
     startBox.style.display = "block";
     questBox.style.visibility = "hidden";
@@ -234,7 +234,7 @@ function init() {
     console.log
 }
 
-
+// Buttons///////////////////////////
 document.querySelector("#deletescores").addEventListener("click", function () {
     names = [];
     times = [];
@@ -256,6 +256,7 @@ document.querySelector("#scorebtn").addEventListener("click", function () {
 
 });
 
+// Reset variables///////////////////
 function reset(){
     q = -1;
     stop = 0
