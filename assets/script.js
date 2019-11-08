@@ -9,7 +9,8 @@ var scoreTitle = document.querySelector("#scoretitle");
 var scores = document.querySelector("#scores");
 var startBtn = document.querySelector("#startbtn");
 var scoreBtn = document.querySelector("#scorebtn");
-
+var enterName = document.querySelector("#enter-name");
+// SOUNDS//////////////////////////////////////////////
 var wrongSound = document.getElementById("wrong");
 wrongSound.volume = 0.3;
 var correctSound = document.getElementById("correct");
@@ -22,6 +23,7 @@ init()
 function init() {
     questBox.style.visibility = "hidden";
     resultsBox.style.display = "none";
+    enterName.style.display = "none";
 
 }
 
