@@ -6,6 +6,7 @@ var question = document.querySelector("#question");
 var choices = document.querySelector("#choices");
 var resultsBox = document.querySelector("#results-box");
 var scores = document.querySelector("#scores");
+var plTime = document.querySelector("#times");
 var startBtn = document.querySelector("#startbtn");
 var scoreBtn = document.querySelector("#scorebtn");
 var enterName = document.querySelector("#enter-name");
@@ -16,11 +17,13 @@ wrongSound.volume = 0.3;
 var correctSound = document.getElementById("correct");
 correctSound.volume = 0.5;
 var lowTime = document.getElementById("lowtime");
-
+// SCORES////////////////////////////////
+var names = []
+var times = []
 
 
 init()
-name()
+
 
 // START BUTTON/////////////////////////////////
 startBtn.addEventListener("click", function () {
@@ -86,7 +89,7 @@ function renderChoices() {
 
             var li = document.createElement("li");
             li.textContent = option;
-            li.setAttribute("data-index", i);
+
 
             var button = document.createElement("button");
             button.textContent = "select";
@@ -96,7 +99,7 @@ function renderChoices() {
         }
     }
 
-    else {        
+    else {
         ended = true
         name()
     }
@@ -143,9 +146,10 @@ function name() {
 }
 
 // TIMER////////////////////////////////////////
-var secondsLeft = (questions.length * 15);
+var secondsLeft = 0;
 var ended = false;
 function setTime() {
+    secondsLeft = (questions.length * 15);
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
@@ -165,15 +169,13 @@ function setTime() {
     }, 1000);
 }
 
-// SCORES////////////////////////////////
-var names = []
-var times = []
+
 // SAVE NAMES AND TIMES//////////////////////////////////////////
 var inputForm = document.querySelector("#inputname");
 function storeNames() {
     localStorage.setItem("names", JSON.stringify(names));
 }
-function storetime(){
+function storetime() {
     localStorage.setItem("times", JSON.stringify(times));
 }
 inputForm.addEventListener("submit", function (event) {
@@ -189,45 +191,74 @@ inputForm.addEventListener("submit", function (event) {
     storeNames();
     storetime();
     enterName.style.display = "none";
-    resultsBox.style.display = "inline";
+
     renderScores();
 })
 
 // DISPLAY SCORES////////////////////////
-function renderScores(){
+function renderScores() {
     scores.innerHTML = "";
-
-    for( var i=0; i< names.length; i++){
+    times.innerHTML = "";
+    resultsBox.style.display = "inline";
+    resultsBox.style.visibility = "visible"
+    for (var i = 0; i < names.length; i++) {
         var name = names[i];
         var time = times[i];
-        var li = document.createElement("li");
-        li.textContent = "Name: " + name + " Time: " + time;
+        var lin = document.createElement("li");
+        var liT = document.createElement("li");
+        lin.textContent = "NAME: " + name;
+        liT.textContent = " TIME: " + time;
 
-        scores.appendChild(li);
+        scores.appendChild(lin);
+        plTime.appendChild(liT);
     }
 
 
 }
 
 
-
 function init() {
+    startBox.style.display = "block";
     questBox.style.visibility = "hidden";
     resultsBox.style.display = "none";
+    resultsBox.style.visibility = "hidden"
     questBox.style.display = "none";
     var storedNames = JSON.parse(localStorage.getItem("names"));
     var storedTimes = JSON.parse(localStorage.getItem("times"));
-    if (storedNames !== null){
+    if (storedNames !== null) {
         names = storedNames;
     }
-    if (storedTimes !== null){
+    if (storedTimes !== null) {
         times = storedTimes;
     }
     console.log
 }
 
 
-// document.querySelector("#submitname").addEventListener("click", function () {
-//     alert("test");
-// });
+document.querySelector("#deletescores").addEventListener("click", function () {
+    names = [];
+    times = [];
+    storeNames();
+    storetime();
+    renderScores();
+    init();
+    reset();
+});
 
+document.querySelector("#restart").addEventListener("click", function () {
+    init();
+    reset();
+});
+
+document.querySelector("#scorebtn").addEventListener("click", function () {
+    renderScores();
+    startBox.style.display = "none";
+
+});
+
+function reset(){
+    q = -1;
+    stop = 0
+    secondsLeft = 0;
+    timeEl.textContent = "Time: " + secondsLeft;
+}

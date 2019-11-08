@@ -41,7 +41,7 @@
             </div>
 
             <!-- Question box -->
-            <div id="question-box" class="d-flex justify-content-center" >
+            <div id="question-box" class="d-flex justify-content-center">
                 <div class="border">
                     <h1 id="question"> </h1>
                     <ul id="choices"> </ul>
@@ -51,21 +51,36 @@
             <!-- input name -->
             <div id="enter-name" style="display:none;">
                 <form id="inputname" method="POST">
-                <h1>enter name</h1>
-                <input type="text" placeholder="Enter Your Name!" name="playername" id="playername">
-            </form>
+                    <h1>enter name</h1>
+                    <input type="text" placeholder="Enter Your Name!" name="playername" id="playername">
+                </form>
             </div>
 
             <!-- Result box -->
-            <div id="results-box" >
-                <h1>SCORES!</h1>
-                <ul id="scores"> </ul>
-                <button type="button" id="deletescores">clear scores</button>
+            <div id="results-box">
+                <div>
+                    <div class="d-flex justify-content-center">
+                        <h1>SCORES!</h1>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                    <button type="button" id="deletescores">Clear Scores</button>
+                    <button type="button" id="restart">Play again</button>
+                </div>
+                    <ul id="scores" style="float: left;"> </ul>
+
+                    <ul id="times" style="float: right;"> </ul>
+
+                </div>
+
+
+
             </div>
 
-
-
         </div>
+
+
+
+    </div>
     </div>
 
 
