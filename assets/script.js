@@ -24,7 +24,7 @@ function init() {
     questBox.style.visibility = "hidden";
     resultsBox.style.display = "none";
     questBox.style.display = "none";
-   
+
 }
 
 // START BUTTON/////////////////////////////////
@@ -59,7 +59,7 @@ var questions = [
     },
     {
         title: "How do you write 'Hello World' in an alert box?",
-        choices: ["msgBox('Hello World')","alertBox('Hello World')", "alert('Hello World')","msg('Hello World')"],
+        choices: ["msgBox('Hello World')", "alertBox('Hello World')", "alert('Hello World')", "msg('Hello World')"],
         answer: "alert('Hello World')"
     },
 
@@ -76,7 +76,7 @@ var stop = 0
 function renderChoices() {
 
     if (stop < questions.length) {
-
+        ended = false;
         choices.innerHTML = "";
         questBox.style.visibility = "visible";
         questBox.style.display = "inline";
@@ -101,10 +101,10 @@ function renderChoices() {
         }
     }
 
-    else{
-        questBox.style.visibility = "hidden";
-        questBox.style.display = "none";
+    else {
+        ended = true
         name()
+
     }
     // else load complete screen
 
@@ -124,11 +124,12 @@ questBox.addEventListener("click", function (event) {
         if (choice == questions[q].answer) {
             correctSound.play();
             renderChoices()
+            console.log("correct ")
         }
         else {
             secondsLeft = secondsLeft - 10;
             wrongSound.play();
-            
+            console.log("incorrect ")
         }
 
         console.log(choice)
@@ -141,8 +142,12 @@ questBox.addEventListener("click", function (event) {
 
 // SHOW NAME INPUT//////////////////////////////
 
-function name(){
+function name() {
     enterName.style.display = "inline";
+    questBox.style.visibility = "hidden";
+    questBox.style.display = "none";
+    resultsBox.style.display = "none";
+
 }
 
 
@@ -152,14 +157,20 @@ function name(){
 
 // TIMER////////////////////////////////////////
 var secondsLeft = (questions.length * 15);
+var ended = false;
 function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
-        if(secondsLeft <= 14){
+        if (secondsLeft <= 14) {
             lowTime.play();
         }
-        
+
+        if (ended === true) {
+            clearInterval(timerInterval);
+        }
+
+
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             sendMessage();
