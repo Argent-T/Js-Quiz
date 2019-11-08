@@ -23,8 +23,8 @@ init()
 function init() {
     questBox.style.visibility = "hidden";
     resultsBox.style.display = "none";
-    enterName.style.display = "none";
-
+    questBox.style.display = "none";
+   
 }
 
 // START BUTTON/////////////////////////////////
@@ -79,6 +79,7 @@ function renderChoices() {
 
         choices.innerHTML = "";
         questBox.style.visibility = "visible";
+        questBox.style.display = "inline";
         q++
         stop++
         // render title
@@ -100,6 +101,11 @@ function renderChoices() {
         }
     }
 
+    else{
+        questBox.style.visibility = "hidden";
+        questBox.style.display = "none";
+        name()
+    }
     // else load complete screen
 
 
@@ -133,6 +139,17 @@ questBox.addEventListener("click", function (event) {
 
 
 
+// SHOW NAME INPUT//////////////////////////////
+
+function name(){
+    enterName.style.display = "inline";
+}
+
+
+
+
+
+
 // TIMER////////////////////////////////////////
 var secondsLeft = (questions.length * 15);
 function setTime() {
@@ -153,17 +170,3 @@ function setTime() {
 
 
 
-choices.addEventListener("click", function (event) {
-    var element = event.target;
-
-    // If that element is a button...
-    if (element.matches("button") === true) {
-        // Get its data-index value and remove the todo element from the list
-        var index = element.parentElement.getAttribute("data-index");
-        //   todos.splice(index, 1);
-
-        // Store updated todos in localStorage, re-render the list
-        //   storeTodos();
-        //   renderTodos();
-    }
-});
