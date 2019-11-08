@@ -5,11 +5,11 @@ var questBox = document.querySelector("#question-box");
 var question = document.querySelector("#question");
 var choices = document.querySelector("#choices");
 var resultsBox = document.querySelector("#results-box");
-var scoreTitle = document.querySelector("#scoretitle");
 var scores = document.querySelector("#scores");
 var startBtn = document.querySelector("#startbtn");
 var scoreBtn = document.querySelector("#scorebtn");
 var enterName = document.querySelector("#enter-name");
+var playerName = document.querySelector("#playername");
 // SOUNDS//////////////////////////////////////////////
 var wrongSound = document.getElementById("wrong");
 wrongSound.volume = 0.3;
@@ -102,12 +102,11 @@ function renderChoices() {
     }
 
     else {
+        
         ended = true
         name()
 
     }
-    // else load complete screen
-
 
 }
 
@@ -150,11 +149,6 @@ function name() {
 
 }
 
-
-
-
-
-
 // TIMER////////////////////////////////////////
 var secondsLeft = (questions.length * 15);
 var ended = false;
@@ -170,7 +164,6 @@ function setTime() {
             clearInterval(timerInterval);
         }
 
-
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             sendMessage();
@@ -179,5 +172,37 @@ function setTime() {
     }, 1000);
 }
 
+// SCORES////////////////////////////////
+var names = []
+var times = []
+var inputForm = document.querySelector("#inputname");
 
 
+document.querySelector("#submitname").addEventListener("click", function () {
+    alert("test");
+});
+
+function storeNames() {
+    localStorage.setItem("names", JSON.stringify(names));
+}
+function storetime(){
+    localStorage.setItem("times", JSON.stringify(times));
+}
+
+
+inputForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var nametext = playerName.value.trim();
+
+    if (nametext === "") {
+        return;
+    }
+    names.push(nametext);
+    playerName.value = "";
+    times.push(secondsLeft);
+    storeNames();
+    storetime();
+    enterName.style.display = "none";
+    resultsBox.style.display = "inline";
+
+})
