@@ -20,12 +20,7 @@ var lowTime = document.getElementById("lowtime");
 
 
 init()
-function init() {
-    questBox.style.visibility = "hidden";
-    resultsBox.style.display = "none";
-    questBox.style.display = "none";
-
-}
+name()
 
 // START BUTTON/////////////////////////////////
 startBtn.addEventListener("click", function () {
@@ -101,11 +96,9 @@ function renderChoices() {
         }
     }
 
-    else {
-        
+    else {        
         ended = true
         name()
-
     }
 
 }
@@ -175,21 +168,14 @@ function setTime() {
 // SCORES////////////////////////////////
 var names = []
 var times = []
+// SAVE NAMES AND TIMES//////////////////////////////////////////
 var inputForm = document.querySelector("#inputname");
-
-
-document.querySelector("#submitname").addEventListener("click", function () {
-    alert("test");
-});
-
 function storeNames() {
     localStorage.setItem("names", JSON.stringify(names));
 }
 function storetime(){
     localStorage.setItem("times", JSON.stringify(times));
 }
-
-
 inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     var nametext = playerName.value.trim();
@@ -204,5 +190,44 @@ inputForm.addEventListener("submit", function (event) {
     storetime();
     enterName.style.display = "none";
     resultsBox.style.display = "inline";
-
+    renderScores();
 })
+
+// DISPLAY SCORES////////////////////////
+function renderScores(){
+    scores.innerHTML = "";
+
+    for( var i=0; i< names.length; i++){
+        var name = names[i];
+        var time = times[i];
+        var li = document.createElement("li");
+        li.textContent = "Name: " + name + " Time: " + time;
+
+        scores.appendChild(li);
+    }
+
+
+}
+
+
+
+function init() {
+    questBox.style.visibility = "hidden";
+    resultsBox.style.display = "none";
+    questBox.style.display = "none";
+    var storedNames = JSON.parse(localStorage.getItem("names"));
+    var storedTimes = JSON.parse(localStorage.getItem("times"));
+    if (storedNames !== null){
+        names = storedNames;
+    }
+    if (storedTimes !== null){
+        times = storedTimes;
+    }
+    console.log
+}
+
+
+// document.querySelector("#submitname").addEventListener("click", function () {
+//     alert("test");
+// });
+
