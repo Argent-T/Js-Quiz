@@ -30,6 +30,7 @@ startBtn.addEventListener("click", function () {
     setTime()
     startBox.style.display = "none";
     renderChoices()
+    timeEl.className = "time";
 });
 
 
@@ -103,6 +104,8 @@ function renderChoices() {
 
     else {
         ended = true
+        lowTime.pause(); 
+        lowTime.currentTime = 0;
         name()
     }
 
@@ -144,6 +147,8 @@ function name() {
     questBox.style.visibility = "hidden";
     questBox.style.display = "none";
     resultsBox.style.display = "none";
+    lowTime.pause(); 
+    lowTime.currentTime = 0;
 
 }
 
@@ -157,13 +162,17 @@ function setTime() {
         timeEl.textContent = "Time: " + secondsLeft;
         if (secondsLeft <= 14) {
             lowTime.play();
+            timeEl.className = "timepanic";
         }
 
         if (ended === true) {
+            lowTime.pause(); 
+            lowTime.currentTime = 0;
             clearInterval(timerInterval);
         }
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
+            secondsLeft = 0;
             clearInterval(timerInterval);
             sendMessage();
         }
@@ -200,7 +209,7 @@ inputForm.addEventListener("submit", function (event) {
 // DISPLAY SCORES////////////////////////
 function renderScores() {
     scores.innerHTML = "";
-    times.innerHTML = "";
+    plTime.innerHTML = "";
     resultsBox.style.display = "inline";
     resultsBox.style.visibility = "visible"
     for (var i = 0; i < names.length; i++) {

@@ -16,6 +16,9 @@ html, body{
 
 .card{
     margin: 0 auto;
+    margin-top: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
 }
 
 /* #question-box{
@@ -29,13 +32,17 @@ html, body{
 .border{
     background-color: white;
     margin: 0 auto;
+    margin-top: 100px;
     padding: 15px;
     padding-bottom: 10px;
     border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
+#question{
+  margin-bottom: 20px;
+}
 li {
-    width: 500px;
+    /* width: 500px; */
     height: 50px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -46,6 +53,7 @@ li {
     line-height: 1.5;
     border-radius: 25px;
     padding-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    
   }
   li button {
@@ -58,6 +66,7 @@ li {
     border-radius: 25px;
     padding-left: 20px;
     padding-right: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   li button:hover {
     background-color: #616161;
@@ -76,4 +85,49 @@ li {
   line-height: 1.5;
   border-radius: 25px;
   padding-left: 20px;
+}
+
+.bordername{
+  background-color: white;
+  margin: 0 auto;
+  padding: 15px;
+  margin-top: -100px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align:center;
+}
+#scorebtn{
+  cursor:pointer; 
+  color: #6842f1;
+  font-size: x-large;
+}
+.time{
+  color: #6842f1;
+  font-size: x-large;
+}
+
+.timepanic{
+  color: red;
+  font-size: xx-large;
+  font-weight: bold;
+
+}
+
+#results-box{
+  text-align:center;
+}
+#resultframe{
+  background-color: white;
+  margin: 0 auto;
+  width: 75%;
+  height: 500px;
+  padding: 15px;
+  margin-top: -100px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
