@@ -23,7 +23,7 @@ var times = []
 
 
 init()
-
+// name()
 
 // START BUTTON/////////////////////////////////
 startBtn.addEventListener("click", function () {
@@ -33,43 +33,7 @@ startBtn.addEventListener("click", function () {
     timeEl.className = "time";
 });
 
-
-// QUESTIONS//////////////////////////////////
-// var questions = [
-//     {
-//         title: "Commonly used data types DO NOT include:",
-//         choices: ["strings", "booleans", "alerts", "numbers"],
-//         answer: "alerts"
-//     },
-//     {
-//         title: "The condition in an if / else statement is enclosed within ____.",
-//         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-//         answer: "parentheses"
-//     },
-//     {
-//         title: "Inside which HTML element do we put the JavaScript?",
-//         choices: ["<script>", "<javascript>", "<scripting>", "<js>"],
-//         answer: "<script>"
-//     },
-//     {
-//         title: "Where is the correct place to insert a JavaScript?",
-//         choices: ["The <head> section", "The <body> section", "Either section"],
-//         answer: "Either section"
-//     },
-//     {
-//         title: "How do you write 'Hello World' in an alert box?",
-//         choices: ["msgBox('Hello World')", "alertBox('Hello World')", "alert('Hello World')", "msg('Hello World')"],
-//         answer: "alert('Hello World')"
-//     },
-
-// ]
-
-// var questions = JSON.parse(localStorage.getItem("questions"));
-console.log(questions.length)
-
-
-
-
+console.log("question length " + questions.length)
 
 var q = -1;
 var stop = 0
@@ -104,7 +68,7 @@ function renderChoices() {
 
     else {
         ended = true
-        lowTime.pause(); 
+        lowTime.pause();
         lowTime.currentTime = 0;
         name()
     }
@@ -119,7 +83,7 @@ questBox.addEventListener("click", function (event) {
     // If that element is a button...
     if (element.matches("button") === true) {
         // Get its data-index value and remove the todo element from the list
-        
+
         var choice = $(element.parentElement).clone().children().remove().end().text();
         if (choice == questions[q].answer) {
             correctSound.play();
@@ -147,7 +111,7 @@ function name() {
     questBox.style.visibility = "hidden";
     questBox.style.display = "none";
     resultsBox.style.display = "none";
-    lowTime.pause(); 
+    lowTime.pause();
     lowTime.currentTime = 0;
 
 }
@@ -166,7 +130,7 @@ function setTime() {
         }
 
         if (ended === true) {
-            lowTime.pause(); 
+            lowTime.pause();
             lowTime.currentTime = 0;
             clearInterval(timerInterval);
         }
@@ -210,7 +174,7 @@ inputForm.addEventListener("submit", function (event) {
 function renderScores() {
     scores.innerHTML = "";
     plTime.innerHTML = "";
-    resultsBox.style.display = "inline";
+    resultsBox.style.display = "block";
     resultsBox.style.visibility = "visible"
     for (var i = 0; i < names.length; i++) {
         var name = names[i];
@@ -268,7 +232,7 @@ document.querySelector("#scorebtn").addEventListener("click", function () {
 });
 
 // Reset variables///////////////////
-function reset(){
+function reset() {
     q = -1;
     stop = 0
     secondsLeft = 0;
