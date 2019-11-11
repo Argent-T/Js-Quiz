@@ -82,8 +82,8 @@ questBox.addEventListener("click", function (event) {
 
     // If that element is a button...
     if (element.matches("button") === true) {
-        // Get its data-index value and remove the todo element from the list
-
+        
+        // get parent element text and compare to question answer
         var choice = $(element.parentElement).clone().children().remove().end().text();
         if (choice == questions[q].answer) {
             correctSound.play();
@@ -174,7 +174,7 @@ inputForm.addEventListener("submit", function (event) {
 function renderScores() {
     scores.innerHTML = "";
     plTime.innerHTML = "";
-    resultsBox.style.display = "block";
+    resultsBox.style.display = "inline";
     resultsBox.style.visibility = "visible"
     for (var i = 0; i < names.length; i++) {
         var name = names[i];
