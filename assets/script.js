@@ -31,6 +31,8 @@ startBtn.addEventListener("click", function () {
     startBox.style.display = "none";
     renderChoices()
     timeEl.className = "time";
+    questBox.style.visibility = "visible";
+    questBox.style.display = "inline";
 });
 
 console.log("question length " + questions.length)
@@ -43,8 +45,7 @@ function renderChoices() {
     if (stop < questions.length) {
         ended = false;
         choices.innerHTML = "";
-        questBox.style.visibility = "visible";
-        questBox.style.display = "inline";
+
         q++
         stop++
         // render title
@@ -70,7 +71,9 @@ function renderChoices() {
         ended = true
         lowTime.pause();
         lowTime.currentTime = 0;
+        questBox.style.display = "none";
         name()
+
     }
 
 }
@@ -82,7 +85,7 @@ questBox.addEventListener("click", function (event) {
 
     // If that element is a button...
     if (element.matches("button") === true) {
-        
+
         // get parent element text and compare to question answer
         var choice = $(element.parentElement).clone().children().remove().end().text();
         if (choice == questions[q].answer) {
